@@ -14,7 +14,7 @@ const projects = [
     description: 'Social media account and content creation management system using AI for generating posts and content. Built with MERN stack for seamless content scheduling and automation.',
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'AI'],
     icon: '🤖',
-    github: 'https://github.com/Ahmedselmi/social-media-ai-manager',
+    github: 'https://github.com/AhmedDjibbi/Nexura-ai-POC/tree/first-branch',
   },
   {
     title: 'AI Doctor Appointment Assistant',
