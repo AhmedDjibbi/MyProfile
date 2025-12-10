@@ -32,7 +32,7 @@ const projects = [
     description: 'Python-based web scraper that analyzes websites to detect those needing design improvements, technology upgrades, security enhancements, or SEO optimization.',
     tech: ['Python', 'BeautifulSoup', 'Web Analysis', 'Automation'],
     icon: '🔍',
-    github: 'https://github.com/Ahmedselmi/website-update-scraper',
+    github: 'https://github.com/AhmedDjibbi/webcrowler',
   },
   {
     title: 'Crowdfunding Platform',
