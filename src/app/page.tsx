@@ -41,7 +41,7 @@ const projects = [
     description: 'Complete crowdfunding web application with JWT authentication, role-based access, campaign creation, and user contributions.',
     tech: ['React', 'Tailwind CSS', 'Spring Boot', 'JWT'],
     icon: '💰',
-    github: 'https://github.com/Ahmedselmi/crowdfunding-platform',
+    github: 'https://github.com/AhmedDjibbi/crowdfunding-backend',
   },
   {
     title: 'University Management Website',
@@ -50,7 +50,7 @@ const projects = [
     description: 'Full-stack web application with secure authentication, user management, routing, and responsive UI.',
     tech: ['Spring Boot', 'JavaScript', 'HTML', 'CSS'],
     icon: '🎓',
-    github: 'https://github.com/Ahmedselmi/university-management',
+    github: 'https://github.com/AhmedDjibbi/university-management-system',
   },
   {
     title: 'Mobile Shopping Application',
