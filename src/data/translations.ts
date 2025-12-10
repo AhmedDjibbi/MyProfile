@@ -16,6 +16,11 @@ export const translations = {
             viewOnGithub: "View on GitHub",
             items: [
                 {
+                    title: "AI Social Media Management System",
+                    type: "Personal Project",
+                    description: "Social media account and content creation management system using AI for generating posts and content. Built with MERN stack for seamless content scheduling and automation.",
+                },
+                {
                     title: "AI Doctor Appointment Assistant",
                     type: "Team Project",
                     description: "Developed an intelligent mobile assistant for managing doctor appointments with real-time scheduling via Google Calendar API and AI chatbot powered by Gemini AI.",
@@ -113,6 +118,11 @@ export const translations = {
             subtitle: "Présentation de mon parcours de développement",
             viewOnGithub: "Voir sur GitHub",
             items: [
+                {
+                    title: "Système de Gestion des Médias Sociaux IA",
+                    type: "Projet Personnel",
+                    description: "Système de gestion de compte et de création de contenu pour les réseaux sociaux utilisant l'IA pour générer des publications. Construit avec la pile MERN pour une planification et une automatisation transparentes du contenu.",
+                },
                 {
                     title: "Assistant de Rendez-vous Médical IA",
                     type: "Projet d'Équipe",

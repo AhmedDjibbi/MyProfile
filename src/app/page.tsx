@@ -8,6 +8,15 @@ import { translations } from '@/data/translations';
 
 const projects = [
   {
+    title: 'AI Social Media Management System',
+    type: 'Personal Project',
+    date: '2025',
+    description: 'Social media account and content creation management system using AI for generating posts and content. Built with MERN stack for seamless content scheduling and automation.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'AI'],
+    icon: '🤖',
+    github: 'https://github.com/Ahmedselmi/social-media-ai-manager',
+  },
+  {
     title: 'AI Doctor Appointment Assistant',
     type: 'Team Project',
     date: '2025 – 2026',
