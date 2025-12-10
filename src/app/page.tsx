@@ -59,7 +59,7 @@ const projects = [
     description: 'Cross-platform mobile shopping app with product listing, smooth navigation, and optimized UI for multiple screen sizes.',
     tech: ['Flutter', 'Dart', 'Firebase'],
     icon: '🛍️',
-    github: 'https://github.com/Ahmedselmi/mobile-shopping-app',
+    github: '',
   },
 ];
 
