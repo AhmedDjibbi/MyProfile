@@ -23,7 +23,7 @@ const projects = [
     description: 'Developed an intelligent mobile assistant for managing doctor appointments with real-time scheduling via Google Calendar API and AI chatbot powered by Gemini AI.',
     tech: ['Flutter', 'Gemini AI', 'Google Calendar API', 'Firebase'],
     icon: '🏥',
-    github: 'https://github.com/Ahmedselmi/ai-doctor-assistant',
+    github: '',
   },
   {
     title: 'Website Update Detection Scraper',
