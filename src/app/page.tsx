@@ -163,7 +163,8 @@ export default function Home() {
               <TerminalSection
                 command="cat about.md"
                 output="# Ahmed Selmi\nAI & Full Stack Engineer\n\nI build intelligent software that lives at the intersection of modern web technologies, artificial intelligence, and elegant design."
-                delay={500}
+                delay={800}
+                autoStart
               >
                 <AboutSection t={t} />
               </TerminalSection>

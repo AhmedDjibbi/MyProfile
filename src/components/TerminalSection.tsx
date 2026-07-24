@@ -12,6 +12,7 @@ interface TerminalSectionProps {
   className?: string;
   delay?: number;
   skipCommand?: boolean;
+  autoStart?: boolean;
 }
 
 export default function TerminalSection({
@@ -22,6 +23,7 @@ export default function TerminalSection({
   className = '',
   delay = 0,
   skipCommand = false,
+  autoStart = false,
 }: TerminalSectionProps) {
   const [phase, setPhase] = useState<'hidden' | 'command' | 'executing' | 'output' | 'revealed'>('hidden');
   const [hasTriggered, setHasTriggered] = useState(false);
@@ -30,19 +32,29 @@ export default function TerminalSection({
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
-    if (!ref.current || hasTriggered) return;
+    if (hasTriggered) return;
+
+    if (autoStart) {
+      timerRef.current = setTimeout(() => {
+        setHasTriggered(true);
+        setPhase('command');
+      }, delay);
+      return;
+    }
+
+    if (!ref.current) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasTriggered) {
+          if (entry.isIntersecting) {
             setHasTriggered(true);
             timerRef.current = setTimeout(() => setPhase('command'), delay);
             observer.disconnect();
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0, rootMargin: '0px 0px 80px 0px' }
     );
 
     observer.observe(ref.current);
@@ -51,7 +63,7 @@ export default function TerminalSection({
       observer.disconnect();
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [hasTriggered, delay]);
+  }, [hasTriggered, delay, autoStart]);
 
   const handleCommandComplete = useCallback(() => {
     setPhase('executing');
