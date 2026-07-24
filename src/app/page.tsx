@@ -149,7 +149,7 @@ export default function Home() {
             <motion.div
               key="boot"
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.6, ease: 'easeIn' }}
             >
               <BootSequence onComplete={() => setBootComplete(true)} />
             </motion.div>
@@ -158,12 +158,12 @@ export default function Home() {
               key="content"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.5 }}
             >
               <TerminalSection
                 command="cat about.md"
                 output="# Ahmed Selmi\nAI & Full Stack Engineer\n\nI build intelligent software that lives at the intersection of modern web technologies, artificial intelligence, and elegant design."
-                delay={200}
+                delay={500}
               >
                 <AboutSection t={t} />
               </TerminalSection>
@@ -171,7 +171,7 @@ export default function Home() {
               <TerminalSection
                 command="ls projects/"
                 output={`ai-social-platform/\tdoctor-assistant/\nweb-scraper/\t\tcrowdfunding/\nuniversity-mgmt/\tmobile-shop/`}
-                delay={100}
+                delay={300}
               >
                 <ProjectsSection projects={projects} t={t} />
               </TerminalSection>
@@ -179,14 +179,14 @@ export default function Home() {
               <TerminalSection
                 command="cat skills.json"
                 output={skillsJson}
-                delay={100}
+                delay={300}
               >
                 <SkillsSection skills={skills} t={t} />
               </TerminalSection>
 
               <TerminalSection
                 command="git log --oneline"
-                delay={100}
+                delay={300}
                 skipCommand={false}
               >
                 <ExperienceSection experiences={experiences} />
@@ -196,7 +196,7 @@ export default function Home() {
                 command="nano contact.md"
                 output={contactMd}
                 outputType="nano"
-                delay={100}
+                delay={300}
               >
                 <ContactSection />
               </TerminalSection>
@@ -205,7 +205,7 @@ export default function Home() {
                 className="terminal-footer"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
               >
                 <p>{t.footer.text} • {new Date().getFullYear()}</p>
               </motion.div>

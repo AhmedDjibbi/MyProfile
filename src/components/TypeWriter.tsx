@@ -40,12 +40,12 @@ export default function TypeWriter({
     tickRef.current = () => {
       if (indexRef.current < textRef.current.length) {
         const char = textRef.current[indexRef.current];
-        let delay = speedRef.current + Math.random() * 25;
+        let delay = speedRef.current + Math.random() * 35;
 
-        if (char === '.' || char === '!' || char === '?') delay += 250;
-        else if (char === ',' || char === ';' || char === ':') delay += 120;
-        else if (char === '\n') delay += 180;
-        else if (char === ' ' && indexRef.current > 0 && textRef.current[indexRef.current - 1] === '.') delay += 120;
+        if (char === '.' || char === '!' || char === '?') delay += 350;
+        else if (char === ',' || char === ';' || char === ':') delay += 200;
+        else if (char === '\n') delay += 280;
+        else if (char === ' ' && indexRef.current > 0 && textRef.current[indexRef.current - 1] === '.') delay += 200;
 
         setDisplayText(textRef.current.slice(0, indexRef.current + 1));
         indexRef.current++;
@@ -62,7 +62,7 @@ export default function TypeWriter({
   useEffect(() => {
     if (!enabled) return;
 
-    timeoutRef.current = setTimeout(tickRef.current, 60);
+    timeoutRef.current = setTimeout(tickRef.current, 200);
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);

@@ -58,11 +58,11 @@ export default function TerminalSection({
     setTimeout(() => {
       setPhase('output');
       setShowOutput(true);
-    }, 300);
+    }, 700);
   }, []);
 
   const handleOutputComplete = useCallback(() => {
-    setTimeout(() => setPhase('revealed'), 200);
+    setTimeout(() => setPhase('revealed'), 500);
   }, []);
 
   return (
@@ -72,9 +72,9 @@ export default function TerminalSection({
           {!skipCommand && (
             <motion.div
               className="terminal-command"
-              initial={{ opacity: 0, x: -8 }}
+              initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
             >
               <span className="terminal-prompt">
                 <span className="terminal-prompt-sign">$</span>
@@ -83,7 +83,7 @@ export default function TerminalSection({
                 text={command}
                 enabled={phase === 'command'}
                 onComplete={handleCommandComplete}
-                speed={25}
+                speed={50}
                 cursorColor="#7c3aed"
               />
             </motion.div>
@@ -94,7 +94,7 @@ export default function TerminalSection({
               className="terminal-output secondary"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.4 }}
               style={{ fontSize: '12px', margin: '4px 0 8px 0' }}
             >
               Loading...
@@ -106,7 +106,7 @@ export default function TerminalSection({
               className="command-output"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.4 }}
             >
               <div className={`terminal-output ${outputType === 'nano' ? 'nano-editor' : ''}`}>
                 {outputType === 'nano' ? (
@@ -120,7 +120,7 @@ export default function TerminalSection({
                         text={output}
                         enabled={phase === 'output'}
                         onComplete={handleOutputComplete}
-                        speed={30}
+                        speed={45}
                         showCursor={false}
                       />
                     </div>
@@ -130,7 +130,7 @@ export default function TerminalSection({
                     text={output}
                     enabled={phase === 'output'}
                     onComplete={handleOutputComplete}
-                    speed={35}
+                    speed={50}
                     showCursor={false}
                   />
                 )}
@@ -142,7 +142,7 @@ export default function TerminalSection({
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.4 }}
               onAnimationComplete={handleOutputComplete}
             />
           )}
@@ -150,10 +150,10 @@ export default function TerminalSection({
           <AnimatePresence>
             {phase === 'revealed' && (
               <motion.div
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 {children}
               </motion.div>

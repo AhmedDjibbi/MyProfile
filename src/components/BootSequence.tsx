@@ -12,7 +12,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase('modules'), 600);
+    const t1 = setTimeout(() => setPhase('modules'), 1400);
     return () => clearTimeout(t1);
   }, []);
 
@@ -26,9 +26,9 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
           setPhase('ready');
           return 100;
         }
-        return p + Math.random() * 20 + 5;
+        return p + Math.random() * 15 + 3;
       });
-    }, 120);
+    }, 220);
 
     return () => clearInterval(interval);
   }, [phase]);
@@ -38,7 +38,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
     const t = setTimeout(() => {
       setPhase('done');
       onComplete();
-    }, 800);
+    }, 1500);
     return () => clearTimeout(t);
   }, [phase, onComplete]);
 
@@ -53,7 +53,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
         className="boot-line accent"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
       >
         AhmedOS v3.0
       </motion.p>
