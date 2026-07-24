@@ -1,16 +1,15 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import TerminalWindow from '@/components/TerminalWindow';
-import BootSequence from '@/components/BootSequence';
-import TerminalSection from '@/components/TerminalSection';
+
+import Cursor from '@/components/Cursor';
+import ScrollProgress from '@/components/ScrollProgress';
+import Background from '@/components/Background';
+import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import ContactSection from '@/components/ContactSection';
-import Background from '@/components/Background';
 import { translations } from '@/data/translations';
 
 const projects = [
@@ -117,116 +116,23 @@ const experiences = [
   },
 ];
 
-const lsOutput = `┌─────────────────────────────────────────────────────────────┐
-│  📁 ai-social-platform/        📁 doctor-assistant/        │
-│  📁 web-scraper/               📁 crowdfunding/            │
-│  📁 university-mgmt/           📁 mobile-shop/             │
-└─────────────────────────────────────────────────────────────┘`;
-
-const skillsJson = `┌─────────────────────────────────────────────────────────────┐
-│  FRONTEND          BACKEND           AI                    │
-│  ──────────        ──────────        ──────────            │
-│  React             Spring Boot       OpenAI                │
-│  Next.js           Node.js           LangChain             │
-│  Flutter           FastAPI           RAG                   │
-│                                     MCP                   │
-├─────────────────────────────────────────────────────────────┤
-│  MOBILE            TOOLS                                    │
-│  ──────────        ──────────                               │
-│  Flutter           Git                                      │
-│  Dart              Docker                                   │
-│                    CI/CD                                    │
-└─────────────────────────────────────────────────────────────┘`;
-
-const contactMd = `┌─────────────────────────────────────────────────────────────┐
-│  📧  Email      ahmedselmi55023612@gmail.com                │
-│  📞  Phone      +216 54 03 38 71                            │
-│  💻  GitHub     github.com/AhmedDjibbi                     │
-│  🔗  LinkedIn   linkedin.com/in/ahmed-selmi                │
-└─────────────────────────────────────────────────────────────┘`;
-
 export default function Home() {
-  const [bootComplete, setBootComplete] = useState(false);
-  const [language, setLanguage] = useState<'en' | 'fr'>('en');
-  const t = translations[language];
-
-  const toggleLanguage = useCallback(() => {
-    setLanguage((prev) => (prev === 'en' ? 'fr' : 'en'));
-  }, []);
+  const t = translations['en'];
 
   return (
     <>
+      <Cursor />
+      <ScrollProgress />
       <Background />
-      <TerminalWindow language={language} onLanguageChange={toggleLanguage}>
-        <AnimatePresence mode="wait">
-          {!bootComplete ? (
-            <motion.div
-              key="boot"
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5, ease: 'easeIn' }}
-            >
-              <BootSequence onComplete={() => setBootComplete(true)} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
-            >
-              <TerminalSection
-                command="cat about.md"
-                output="# Ahmed Selmi\nAI & Full Stack Engineer\n\nbuilding intelligent software at the intersection of\nmodern web, artificial intelligence, and elegant design."
-                delay={600}
-                autoStart
-              >
-                <AboutSection t={t} />
-              </TerminalSection>
-
-              <TerminalSection
-                command="ls projects/"
-                output={lsOutput}
-                delay={200}
-              >
-                <ProjectsSection projects={projects} t={t} />
-              </TerminalSection>
-
-              <TerminalSection
-                command="cat skills.json"
-                output={skillsJson}
-                delay={200}
-              >
-                <SkillsSection skills={skills} t={t} />
-              </TerminalSection>
-
-              <TerminalSection
-                command="git log --oneline"
-                delay={200}
-              >
-                <ExperienceSection experiences={experiences} />
-              </TerminalSection>
-
-              <TerminalSection
-                command="nano contact.md"
-                output={contactMd}
-                outputType="nano"
-                delay={200}
-              >
-                <ContactSection />
-              </TerminalSection>
-
-              <motion.div
-                className="terminal-footer"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-              >
-                <p>{t.footer.text} • {new Date().getFullYear()}</p>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </TerminalWindow>
+      <HeroSection t={t} />
+      <AboutSection t={t} />
+      <ProjectsSection projects={projects} t={t} />
+      <SkillsSection skills={skills} t={t} />
+      <ExperienceSection experiences={experiences} />
+      <ContactSection />
+      <footer className="footer">
+        <p>{t.footer.text} • {new Date().getFullYear()}</p>
+      </footer>
     </>
   );
 }
