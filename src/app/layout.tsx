@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ahmed Selmi | Full Stack Developer",
-  description: "Junior Full Stack Developer & Computer Science Student. Experienced in React, Spring Boot, Flutter, and modern web development.",
-  keywords: ["Ahmed Selmi", "Full Stack Developer", "React", "Spring Boot", "Flutter", "Web Developer", "Portfolio"],
+  title: "Ahmed Selmi | AI & Full Stack Engineer",
+  description: "AI & Full Stack Engineer. Building intelligent software with modern web technologies, AI, and elegant design.",
+  keywords: ["Ahmed Selmi", "Full Stack Developer", "AI Engineer", "React", "Spring Boot", "Flutter", "Portfolio"],
   authors: [{ name: "Ahmed Selmi" }],
   openGraph: {
-    title: "Ahmed Selmi | Full Stack Developer",
-    description: "Junior Full Stack Developer & Computer Science Student",
+    title: "Ahmed Selmi | AI & Full Stack Engineer",
+    description: "AI & Full Stack Engineer. Building intelligent software.",
     type: "website",
   },
 };
