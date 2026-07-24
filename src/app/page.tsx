@@ -117,19 +117,33 @@ const experiences = [
   },
 ];
 
-const skillsJson = `{
-  "Frontend": ["React", "Next.js", "Flutter"],
-  "Backend": ["Spring Boot", "Node.js", "FastAPI"],
-  "AI": ["OpenAI", "LangChain", "RAG", "MCP"],
-  "Mobile": ["Flutter", "Dart"]
-}`;
+const lsOutput = `┌─────────────────────────────────────────────────────────────┐
+│  📁 ai-social-platform/        📁 doctor-assistant/        │
+│  📁 web-scraper/               📁 crowdfunding/            │
+│  📁 university-mgmt/           📁 mobile-shop/             │
+└─────────────────────────────────────────────────────────────┘`;
 
-const contactMd = `# Contact
+const skillsJson = `┌─────────────────────────────────────────────────────────────┐
+│  FRONTEND          BACKEND           AI                    │
+│  ──────────        ──────────        ──────────            │
+│  React             Spring Boot       OpenAI                │
+│  Next.js           Node.js           LangChain             │
+│  Flutter           FastAPI           RAG                   │
+│                                     MCP                   │
+├─────────────────────────────────────────────────────────────┤
+│  MOBILE            TOOLS                                    │
+│  ──────────        ──────────                               │
+│  Flutter           Git                                      │
+│  Dart              Docker                                   │
+│                    CI/CD                                    │
+└─────────────────────────────────────────────────────────────┘`;
 
-Email: ahmedselmi55023612@gmail.com
-Phone: +216 54 03 38 71
-GitHub: github.com/AhmedDjibbi
-LinkedIn: linkedin.com/in/ahmed-selmi`;
+const contactMd = `┌─────────────────────────────────────────────────────────────┐
+│  📧  Email      ahmedselmi55023612@gmail.com                │
+│  📞  Phone      +216 54 03 38 71                            │
+│  💻  GitHub     github.com/AhmedDjibbi                     │
+│  🔗  LinkedIn   linkedin.com/in/ahmed-selmi                │
+└─────────────────────────────────────────────────────────────┘`;
 
 export default function Home() {
   const [bootComplete, setBootComplete] = useState(false);
@@ -149,7 +163,7 @@ export default function Home() {
             <motion.div
               key="boot"
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.6, ease: 'easeIn' }}
+              transition={{ duration: 0.5, ease: 'easeIn' }}
             >
               <BootSequence onComplete={() => setBootComplete(true)} />
             </motion.div>
@@ -158,12 +172,12 @@ export default function Home() {
               key="content"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
             >
               <TerminalSection
                 command="cat about.md"
-                output="# Ahmed Selmi\nAI & Full Stack Engineer\n\nI build intelligent software that lives at the intersection of modern web technologies, artificial intelligence, and elegant design."
-                delay={800}
+                output="# Ahmed Selmi\nAI & Full Stack Engineer\n\nbuilding intelligent software at the intersection of\nmodern web, artificial intelligence, and elegant design."
+                delay={600}
                 autoStart
               >
                 <AboutSection t={t} />
@@ -171,8 +185,8 @@ export default function Home() {
 
               <TerminalSection
                 command="ls projects/"
-                output={`ai-social-platform/\tdoctor-assistant/\nweb-scraper/\t\tcrowdfunding/\nuniversity-mgmt/\tmobile-shop/`}
-                delay={300}
+                output={lsOutput}
+                delay={200}
               >
                 <ProjectsSection projects={projects} t={t} />
               </TerminalSection>
@@ -180,15 +194,14 @@ export default function Home() {
               <TerminalSection
                 command="cat skills.json"
                 output={skillsJson}
-                delay={300}
+                delay={200}
               >
                 <SkillsSection skills={skills} t={t} />
               </TerminalSection>
 
               <TerminalSection
                 command="git log --oneline"
-                delay={300}
-                skipCommand={false}
+                delay={200}
               >
                 <ExperienceSection experiences={experiences} />
               </TerminalSection>
@@ -197,7 +210,7 @@ export default function Home() {
                 command="nano contact.md"
                 output={contactMd}
                 outputType="nano"
-                delay={300}
+                delay={200}
               >
                 <ContactSection />
               </TerminalSection>

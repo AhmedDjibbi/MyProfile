@@ -26,59 +26,58 @@ export default function TerminalSection({
   autoStart = false,
 }: TerminalSectionProps) {
   const [phase, setPhase] = useState<'hidden' | 'command' | 'executing' | 'output' | 'revealed'>('hidden');
-  const [hasTriggered, setHasTriggered] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const hasTriggeredRef = useRef(false);
+  const delayRef = useRef(delay);
+
+  useEffect(() => { delayRef.current = delay; });
 
   useEffect(() => {
-    if (hasTriggered) return;
+    if (hasTriggeredRef.current) return;
 
     if (autoStart) {
-      timerRef.current = setTimeout(() => {
-        setHasTriggered(true);
-        setPhase('command');
-      }, delay);
-      return;
+      hasTriggeredRef.current = true;
+      const t = setTimeout(() => setPhase('command'), delay);
+      return () => clearTimeout(t);
     }
 
-    if (!ref.current) return;
+    const el = sectionRef.current;
+    if (!el) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (hasTriggeredRef.current) return;
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setHasTriggered(true);
-            timerRef.current = setTimeout(() => setPhase('command'), delay);
+          if (entry.isIntersecting && !hasTriggeredRef.current) {
+            hasTriggeredRef.current = true;
             observer.disconnect();
+            setTimeout(() => setPhase('command'), delayRef.current);
           }
         });
       },
-      { threshold: 0, rootMargin: '0px 0px 80px 0px' }
+      { threshold: 0, rootMargin: '0px 0px 100px 0px' }
     );
 
-    observer.observe(ref.current);
+    observer.observe(el);
 
-    return () => {
-      observer.disconnect();
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [hasTriggered, delay, autoStart]);
+    return () => observer.disconnect();
+  }, [autoStart]);
 
   const handleCommandComplete = useCallback(() => {
     setPhase('executing');
     setTimeout(() => {
       setPhase('output');
       setShowOutput(true);
-    }, 700);
+    }, 500);
   }, []);
 
   const handleOutputComplete = useCallback(() => {
-    setTimeout(() => setPhase('revealed'), 500);
+    setTimeout(() => setPhase('revealed'), 400);
   }, []);
 
   return (
-    <div ref={ref} className={`terminal-section ${phase !== 'hidden' ? 'visible' : ''} ${className}`}>
+    <div ref={sectionRef} className={`terminal-section ${phase !== 'hidden' ? 'visible' : ''} ${className}`}>
       {phase !== 'hidden' && (
         <>
           {!skipCommand && (
@@ -95,7 +94,7 @@ export default function TerminalSection({
                 text={command}
                 enabled={phase === 'command'}
                 onComplete={handleCommandComplete}
-                speed={50}
+                speed={35}
                 cursorColor="#7c3aed"
               />
             </motion.div>
@@ -132,7 +131,7 @@ export default function TerminalSection({
                         text={output}
                         enabled={phase === 'output'}
                         onComplete={handleOutputComplete}
-                        speed={45}
+                        speed={35}
                         showCursor={false}
                       />
                     </div>
@@ -142,7 +141,7 @@ export default function TerminalSection({
                     text={output}
                     enabled={phase === 'output'}
                     onComplete={handleOutputComplete}
-                    speed={50}
+                    speed={40}
                     showCursor={false}
                   />
                 )}
