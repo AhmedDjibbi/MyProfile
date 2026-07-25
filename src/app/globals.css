@@ -123,26 +123,76 @@ a, button, input, textarea, select, [role="button"] {
 
 .floating-shape {
   position: absolute;
-  opacity: 0.08;
 }
 
 .floating-shape.circle {
-  border: 1px solid var(--accent);
+  border: 1.5px solid var(--accent);
   border-radius: 50%;
+  background: rgba(245, 158, 11, 0.04);
 }
 
 .floating-shape.diamond {
-  border: 1px solid var(--accent-alt);
-  transform: rotate(45deg);
+  border: 1.5px solid var(--accent-alt);
+  background: rgba(224, 122, 95, 0.04);
+}
+
+.floating-shape.ring {
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0.25;
+}
+
+.floating-shape.ring-inner {
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 50%;
+}
+
+.floating-shape.plus {
+  position: relative;
+}
+
+.floating-shape.plus::before,
+.floating-shape.plus::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+.floating-shape.plus::before {
+  width: 100%;
+  height: 1.5px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.floating-shape.plus::after {
+  height: 100%;
+  width: 1.5px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.floating-shape.dot {
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .floating-shape.triangle {
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 17px solid rgba(245, 158, 11, 0.08);
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 20px solid rgba(245, 158, 11, 0.12);
   background: none !important;
+}
+
+.floating-shape.square {
+  border: 1.5px solid rgba(245, 158, 11, 0.2);
+  border-radius: 3px;
+  background: rgba(245, 158, 11, 0.03);
 }
 
 /* Spotlight */
