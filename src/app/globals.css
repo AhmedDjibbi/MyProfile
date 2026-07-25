@@ -47,12 +47,120 @@ a, button, input, textarea, select, [role="button"] {
   width: 0;
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
+/* ─── Background Ornaments ─── */
+
+.orbs-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
 }
 
-/* Scroll Progress */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+.orb-1 { width: 500px; height: 500px; background: rgba(245, 158, 11, 0.07); top: -8%; right: -8%; animation: orbDrift1 22s ease-in-out infinite; }
+.orb-2 { width: 420px; height: 420px; background: rgba(224, 122, 95, 0.05); bottom: -10%; left: -5%; animation: orbDrift2 26s ease-in-out infinite reverse; }
+.orb-3 { width: 350px; height: 350px; background: rgba(245, 158, 11, 0.04); top: 40%; left: 60%; animation: orbDrift3 18s ease-in-out infinite 3s; }
+.orb-4 { width: 280px; height: 280px; background: rgba(224, 122, 95, 0.04); top: 15%; left: 10%; animation: orbDrift4 20s ease-in-out infinite 5s; }
+.orb-5 { width: 380px; height: 380px; background: rgba(245, 158, 11, 0.03); bottom: 20%; right: 15%; animation: orbDrift1 24s ease-in-out infinite 7s; }
+
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -50px) scale(1.06); }
+  66% { transform: translate(-30px, 30px) scale(0.95); }
+}
+
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-50px, 40px) scale(1.04); }
+  66% { transform: translate(30px, -30px) scale(0.96); }
+}
+
+@keyframes orbDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -30px) scale(1.08); }
+}
+
+@keyframes orbDrift4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-30px, -40px) scale(0.94); }
+  66% { transform: translate(40px, 20px) scale(1.05); }
+}
+
+/* Grid pattern overlay */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridShift 40s linear infinite;
+}
+
+@keyframes gridShift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(30px, 30px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Floating shapes */
+.shapes-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-shape {
+  position: absolute;
+  opacity: 0.08;
+}
+
+.floating-shape.circle {
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+}
+
+.floating-shape.diamond {
+  border: 1px solid var(--accent-alt);
+  transform: rotate(45deg);
+}
+
+.floating-shape.triangle {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 17px solid rgba(245, 158, 11, 0.08);
+  background: none !important;
+}
+
+/* Spotlight */
+.spotlight {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.025) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: opacity 0.3s ease;
+}
+
+/* ─── Scroll Progress ─── */
+
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -65,12 +173,14 @@ a, button, input, textarea, select, [role="button"] {
   scale: 0 1;
 }
 
-/* Sections */
+/* ─── Sections ─── */
+
 .section {
   padding: 120px 24px;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
+  z-index: 1;
 }
 
 .section-header {
@@ -104,7 +214,8 @@ a, button, input, textarea, select, [role="button"] {
   line-height: 1.6;
 }
 
-/* Hero */
+/* ─── Hero ─── */
+
 .hero {
   min-height: 100vh;
   display: flex;
@@ -113,6 +224,7 @@ a, button, input, textarea, select, [role="button"] {
   padding: 24px;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .hero-inner {
@@ -166,7 +278,8 @@ a, button, input, textarea, select, [role="button"] {
   flex-wrap: wrap;
 }
 
-/* Buttons */
+/* ─── Buttons ─── */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -199,7 +312,8 @@ a, button, input, textarea, select, [role="button"] {
   background: rgba(245, 158, 11, 0.06);
 }
 
-/* Hero scroll indicator */
+/* ─── Hero scroll indicator ─── */
+
 .scroll-indicator {
   position: absolute;
   bottom: 40px;
@@ -221,7 +335,8 @@ a, button, input, textarea, select, [role="button"] {
   background: linear-gradient(to bottom, var(--text-muted), transparent);
 }
 
-/* About */
+/* ─── About ─── */
+
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -288,11 +403,8 @@ a, button, input, textarea, select, [role="button"] {
   margin-bottom: 16px;
 }
 
-.about-text .text-block:last-child {
-  margin-bottom: 0;
-}
+/* ─── Projects ─── */
 
-/* Projects */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -395,7 +507,8 @@ a, button, input, textarea, select, [role="button"] {
   color: var(--accent);
 }
 
-/* Skills */
+/* ─── Skills ─── */
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -440,7 +553,8 @@ a, button, input, textarea, select, [role="button"] {
   gap: 6px;
 }
 
-/* Experience Timeline */
+/* ─── Experience Timeline ─── */
+
 .timeline {
   position: relative;
 }
@@ -537,10 +651,13 @@ a, button, input, textarea, select, [role="button"] {
   gap: 4px;
 }
 
-/* Contact */
+/* ─── Contact ─── */
+
 .contact-section {
   text-align: center;
   padding: 160px 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .contact-heading {
@@ -591,93 +708,20 @@ a, button, input, textarea, select, [role="button"] {
   height: 20px;
 }
 
-/* Footer */
+/* ─── Footer ─── */
+
 .footer {
   text-align: center;
   padding: 32px 24px;
   font-size: 13px;
   color: var(--text-muted);
   border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
 }
 
-/* Background Orbs */
-.orbs-container {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
+/* ─── Responsive ─── */
 
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.3;
-}
-
-.orb-1 {
-  width: 500px;
-  height: 500px;
-  background: rgba(245, 158, 11, 0.08);
-  top: -10%;
-  right: -10%;
-  animation: orbFloat 20s ease-in-out infinite;
-}
-
-.orb-2 {
-  width: 400px;
-  height: 400px;
-  background: rgba(224, 122, 95, 0.06);
-  bottom: -5%;
-  left: -5%;
-  animation: orbFloat 25s ease-in-out infinite reverse;
-}
-
-.orb-3 {
-  width: 300px;
-  height: 300px;
-  background: rgba(245, 158, 11, 0.04);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: orbFloat 15s ease-in-out infinite 5s;
-}
-
-@keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -40px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
-}
-
-/* Split text styling */
-.split-text {
-  overflow: hidden;
-}
-
-.split-text .word {
-  display: inline-block;
-  overflow: hidden;
-}
-
-/* Slide indicators */
-.slide-left,
-.slide-right {
-  opacity: 0;
-  transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.slide-left.in-view {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.slide-right.in-view {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Responsive */
 @media (max-width: 900px) {
   .about-grid {
     grid-template-columns: 1fr;
@@ -740,4 +784,14 @@ a, button, input, textarea, select, [role="button"] {
   .contact-section {
     padding: 100px 20px;
   }
+}
+
+/* Split text base */
+.split-text {
+  overflow: hidden;
+}
+
+.split-text .word {
+  display: inline-block;
+  overflow: hidden;
 }
