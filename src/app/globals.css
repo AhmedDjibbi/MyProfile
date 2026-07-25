@@ -143,6 +143,13 @@ a, button, input, textarea, select, [role="button"] {
   margin-bottom: 24px;
 }
 
+.hero-name .word {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-alt) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .hero-tagline {
   font-size: clamp(18px, 2.5vw, 24px);
   color: var(--text-muted);
