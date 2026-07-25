@@ -40,10 +40,10 @@ export default function SkillsSection({ skills, t }: SkillsSectionProps) {
           <motion.div
             key={index}
             className="skill-card"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, clipPath: 'inset(0 0 100% 0)' }}
+            whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0)' }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ delay: index * 0.08, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ delay: index * 0.08, duration: 0.7, ease: [0.77, 0, 0.18, 1] }}
           >
             <div className="skill-card-icon">{skillIcons[skill.category] || '🔧'}</div>
             <h3>{t.skills.categories[index]?.name || skill.category}</h3>

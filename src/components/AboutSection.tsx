@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import gsap from 'gsap';
 import SplitType from 'split-type';
 
@@ -59,7 +59,14 @@ export default function AboutSection({ t }: AboutSectionProps) {
   }, [isInView, projectCount, yearCount]);
 
   return (
-    <section ref={sectionRef} className="section" id="about">
+    <motion.section
+      ref={sectionRef}
+      className="section"
+      id="about"
+      initial={{ clipPath: 'inset(0 0 100% 0)' }}
+      whileInView={{ clipPath: 'inset(0)' }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 1.1, ease: [0.77, 0, 0.18, 1] }}>
       <div className="section-header">
         <span className="label">About</span>
         <h2 className="title">Who I Am</h2>
@@ -84,6 +91,6 @@ export default function AboutSection({ t }: AboutSectionProps) {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

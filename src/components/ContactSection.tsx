@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import gsap from 'gsap';
 import SplitType from 'split-type';
 import MagneticButton from './MagneticButton';
@@ -33,7 +33,14 @@ export default function ContactSection() {
   }, [isInView]);
 
   return (
-    <section ref={sectionRef} className="contact-section" id="contact">
+    <motion.section
+      ref={sectionRef}
+      className="contact-section"
+      id="contact"
+      initial={{ clipPath: 'inset(0 0 100% 0)' }}
+      whileInView={{ clipPath: 'inset(0)' }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 1.1, ease: [0.77, 0, 0.18, 1] }}>
       <h2 ref={headingRef} className="contact-heading">
         Let&apos;s build something <span className="highlight">great</span> together
       </h2>
@@ -55,6 +62,6 @@ export default function ContactSection() {
           </svg>
         </a>
       </div>
-    </section>
+    </motion.section>
   );
 }

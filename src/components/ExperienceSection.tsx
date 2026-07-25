@@ -24,9 +24,9 @@ function TimelineEntry({ exp, index }: { exp: Experience; index: number }) {
     <motion.div
       ref={ref}
       className="timeline-item"
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.15, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      initial={{ opacity: 0, y: 40, clipPath: 'inset(0 0 100% 0)' }}
+      animate={isInView ? { opacity: 1, y: 0, clipPath: 'inset(0)' } : {}}
+      transition={{ delay: index * 0.15, duration: 0.8, ease: [0.77, 0, 0.18, 1] }}
     >
       <div className="timeline-content">
         <span className="date">{exp.date}</span>

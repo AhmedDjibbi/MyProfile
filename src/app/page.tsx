@@ -10,7 +10,6 @@ import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import ContactSection from '@/components/ContactSection';
-import RevealSection from '@/components/RevealSection';
 import { translations } from '@/data/translations';
 
 const projects = [
@@ -126,11 +125,11 @@ export default function Home() {
       <ScrollProgress />
       <Background />
       <HeroSection t={t} />
-      <RevealSection><AboutSection t={t} /></RevealSection>
-      <RevealSection><ProjectsSection projects={projects} t={t} /></RevealSection>
-      <RevealSection><SkillsSection skills={skills} t={t} /></RevealSection>
-      <RevealSection><ExperienceSection experiences={experiences} /></RevealSection>
-      <RevealSection><ContactSection /></RevealSection>
+      <AboutSection t={t} />
+      <ProjectsSection projects={projects} t={t} />
+      <SkillsSection skills={skills} t={t} />
+      <ExperienceSection experiences={experiences} />
+      <ContactSection />
       <footer className="footer">
         <p>{t.footer.text} • {new Date().getFullYear()}</p>
       </footer>

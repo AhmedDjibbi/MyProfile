@@ -63,10 +63,10 @@ function ProjectCard({ project, t, index }: {
       target={project.github ? '_blank' : undefined}
       rel={project.github ? 'noopener noreferrer' : undefined}
       className="project-card interactive"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 40, clipPath: 'inset(0 0 100% 0)' }}
+      whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0)' }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ delay: index * 0.1, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ delay: index * 0.1, duration: 0.8, ease: [0.77, 0, 0.18, 1] }}
       style={!project.github ? { cursor: 'default' } : undefined}
     >
       <div className="project-card-image">
