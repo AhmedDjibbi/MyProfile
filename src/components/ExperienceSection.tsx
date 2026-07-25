@@ -59,7 +59,12 @@ function TimelineEntry({ exp, index }: { exp: Experience; index: number }) {
           </div>
         </motion.div>
       </div>
-      <div className="timeline-dot" />
+      <motion.div
+        className="timeline-dot"
+        initial={{ scale: 0 }}
+        animate={isInView ? { scale: 1 } : {}}
+        transition={{ delay: index * 0.15 + 0.3, type: 'spring', stiffness: 300, damping: 12 }}
+      />
     </motion.div>
   );
 }

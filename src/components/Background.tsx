@@ -41,10 +41,10 @@ function FloatingShape({ index }: { index: number }) {
   const shape = shapeTypes[index % shapeTypes.length];
   const pos = positions[index % positions.length];
   const colorKey = colorVariants[index % colorVariants.length];
-  const borderColor = colorKey === 'accent' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(224, 122, 95, 0.15)';
-  const bgColor = colorKey === 'accent' ? 'rgba(245, 158, 11, 0.04)' : 'rgba(224, 122, 95, 0.04)';
-  const dotBg = colorKey === 'accent' ? 'rgba(245, 158, 11, 0.2)' : 'rgba(224, 122, 95, 0.2)';
-  const triangleColor = colorKey === 'accent' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(224, 122, 95, 0.15)';
+  const borderColor = colorKey === 'accent' ? 'rgba(245, 158, 11, 0.35)' : 'rgba(224, 122, 95, 0.35)';
+  const bgColor = colorKey === 'accent' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(224, 122, 95, 0.1)';
+  const dotBg = colorKey === 'accent' ? 'rgba(245, 158, 11, 0.4)' : 'rgba(224, 122, 95, 0.4)';
+  const triangleColor = colorKey === 'accent' ? 'rgba(245, 158, 11, 0.35)' : 'rgba(224, 122, 95, 0.35)';
 
   const baseStyle: React.CSSProperties = {
     left: `${pos.left}%`,
@@ -62,7 +62,7 @@ function FloatingShape({ index }: { index: number }) {
       case 'ring':
         return { ...baseStyle, width: size.w, height: size.h, borderColor };
       case 'ring-inner':
-        return { ...baseStyle, width: size.w * 0.6, height: size.h * 0.6, borderColor: 'rgba(245, 158, 11, 0.12)' };
+        return { ...baseStyle, width: size.w * 0.6, height: size.h * 0.6, borderColor: 'rgba(245, 158, 11, 0.3)' };
       case 'plus':
         return { ...baseStyle, width: size.w * 0.6, height: size.h * 0.6 };
       case 'dot':
@@ -83,28 +83,29 @@ function FloatingShape({ index }: { index: number }) {
         y: [0, -40 - (index * 3) % 25, 0],
         x: [0, (index % 2 === 0 ? 20 : -20), 0],
         rotate: shape === 'diamond' ? [45, 80, 45] : shape === 'square' ? [0, 12, 0] : [0, (index % 2 === 0 ? 15 : -15), 0],
-        scale: [1, 1.08, 1],
-        opacity: [0.2, 0.35, 0.2],
+        scale: [1, 1.15, 1],
+        opacity: [0.3, 0.55, 0.3],
       };
       case 1: return {
         y: [0, 30, 0, -20, 0],
         x: [0, -25, 10, -15, 0],
         rotate: shape === 'diamond' ? [45, 30, 60, 45] : [0, -12, 8, 0],
-        scale: [1, 0.92, 1.06, 1],
-        opacity: [0.15, 0.3, 0.2, 0.15],
+        scale: [1, 0.92, 1.1, 1],
+        opacity: [0.25, 0.45, 0.35, 0.25],
       };
       case 2: return {
         y: [0, -20, -50, -20, 0],
         x: [0, 15, 0, -15, 0],
         rotate: [0, 8, -5, 10, 0],
-        opacity: [0.18, 0.32, 0.22, 0.28, 0.18],
+        scale: [1, 1.06, 1, 1.08, 1],
+        opacity: [0.28, 0.5, 0.32, 0.45, 0.28],
       };
       case 3: return {
         y: [0, -35, 15, -25, 0],
         x: [0, 10, -20, 5, 0],
         rotate: shape === 'diamond' ? [45, 55, 35, 50, 45] : [0, 10, -8, 5, 0],
-        scale: [1, 1.05, 0.95, 1.02, 1],
-        opacity: [0.22, 0.38, 0.25, 0.3, 0.22],
+        scale: [1, 1.1, 0.95, 1.05, 1],
+        opacity: [0.32, 0.55, 0.35, 0.45, 0.32],
       };
     }
   };
@@ -136,13 +137,13 @@ function FloatingLine({ index }: { index: number }) {
         top: `${10 + (index * 15) % 80}%`,
         width: isHorizontal ? length : 1,
         height: isHorizontal ? 1 : length,
-        background: `linear-gradient(${isHorizontal ? '90deg' : '180deg'}, transparent, rgba(245, 158, 11, 0.06), transparent)`,
+        background: `linear-gradient(${isHorizontal ? '90deg' : '180deg'}, transparent, rgba(245, 158, 11, 0.15), transparent)`,
         pointerEvents: 'none',
-        opacity: 0.3,
+        opacity: 0.5,
       }}
       animate={{
-        opacity: [0.1, 0.3, 0.1],
-        scale: isHorizontal ? [1, 1.2, 1] : [1, 1.15, 1],
+        opacity: [0.2, 0.5, 0.2],
+        scale: isHorizontal ? [1, 1.3, 1] : [1, 1.2, 1],
       }}
       transition={{
         duration: 6 + (index * 1.2) % 5,

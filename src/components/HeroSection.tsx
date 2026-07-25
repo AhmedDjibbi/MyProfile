@@ -26,24 +26,17 @@ export default function HeroSection({ t }: HeroSectionProps) {
     const ctx = gsap.context(() => {
       const nameSplit = nameRef.current ? new SplitType(nameRef.current, { types: 'words' }) : null;
       if (nameSplit?.words) {
-        gsap.from(nameSplit.words, {
-          y: 80,
-          opacity: 0,
-          rotateX: -30,
-          stagger: 0.04,
-          duration: 0.8,
-          ease: 'power3.out',
-        });
+        gsap.fromTo(nameSplit.words,
+          { y: 120, opacity: 0, scale: 0.5, rotateX: -50 },
+          { y: 0, opacity: 1, scale: 1, rotateX: 0, stagger: 0.04, duration: 1, ease: 'power4.out' }
+        );
       }
 
       if (taglineRef.current) {
-        gsap.from(taglineRef.current, {
-          y: 30,
-          opacity: 0,
-          delay: 0.6,
-          duration: 0.8,
-          ease: 'power2.out',
-        });
+        gsap.fromTo(taglineRef.current,
+          { y: 30, opacity: 0, scale: 0.9 },
+          { y: 0, opacity: 1, scale: 1, delay: 0.8, duration: 0.8, ease: 'power3.out' }
+        );
       }
     });
 
